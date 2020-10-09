@@ -8,6 +8,8 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 import visao.controle.VisaoControlePrincipal;
+import net.miginfocom.swing.MigLayout;
+import javax.swing.JLabel;
 
 @SuppressWarnings("serial")
 public class TelaFormulario extends JFrame {
@@ -35,8 +37,14 @@ public class TelaFormulario extends JFrame {
 		setMinimumSize(new Dimension(600, 360));
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-		contentPane.setLayout(new BorderLayout(0, 0));
 		setContentPane(contentPane);
+		contentPane.setLayout(new MigLayout("", "[][]", "[][]"));
+		
+		JLabel lblNewLabel = new JLabel("New label");
+		contentPane.add(lblNewLabel, "cell 0 0");
+		
+		JLabel lblNewLabel_1 = new JLabel("New label");
+		contentPane.add(lblNewLabel_1, "cell 1 1");
 	}
 
 }
