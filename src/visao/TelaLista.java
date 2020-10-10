@@ -41,6 +41,9 @@ public class TelaLista extends JFrame {
 		
 		JButton btnNewButton = new JButton("New button");
 		contentPane.add(btnNewButton, BorderLayout.CENTER);
+		
+		JButton btnNewButton_1 = new JButton("New button");
+		contentPane.add(btnNewButton_1, BorderLayout.EAST);
 	}
 
 }
