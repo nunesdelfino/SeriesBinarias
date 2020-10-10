@@ -9,6 +9,8 @@ import javax.swing.border.EmptyBorder;
 
 import visao.controle.VisaoControlePrincipal;
 import javax.swing.JButton;
+import javax.swing.JLabel;
+import javax.swing.SwingConstants;
 
 @SuppressWarnings("serial")
 public class TelaLista extends JFrame {
@@ -38,6 +40,24 @@ public class TelaLista extends JFrame {
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		contentPane.setLayout(new BorderLayout(0, 0));
 		setContentPane(contentPane);
+		
+		JLabel lblNewLabel = new JLabel("New label");
+		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
+		contentPane.add(lblNewLabel, BorderLayout.CENTER);
+		
+		JLabel lblNewLabel_1 = new JLabel("New label");
+		contentPane.add(lblNewLabel_1, BorderLayout.WEST);
+		
+		JLabel lblNewLabel_2 = new JLabel("New label");
+		lblNewLabel_2.setHorizontalAlignment(SwingConstants.CENTER);
+		contentPane.add(lblNewLabel_2, BorderLayout.SOUTH);
+		
+		JLabel lblNewLabel_3 = new JLabel("New label");
+		contentPane.add(lblNewLabel_3, BorderLayout.EAST);
+		
+		JLabel lblNewLabel_4 = new JLabel("New label");
+		lblNewLabel_4.setHorizontalAlignment(SwingConstants.CENTER);
+		contentPane.add(lblNewLabel_4, BorderLayout.NORTH);
 		
 	}
 
