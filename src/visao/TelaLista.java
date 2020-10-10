@@ -8,6 +8,7 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 import visao.controle.VisaoControlePrincipal;
+import javax.swing.JButton;
 
 @SuppressWarnings("serial")
 public class TelaLista extends JFrame {
@@ -37,6 +38,9 @@ public class TelaLista extends JFrame {
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		contentPane.setLayout(new BorderLayout(0, 0));
 		setContentPane(contentPane);
+		
+		JButton btnNewButton = new JButton("New button");
+		contentPane.add(btnNewButton, BorderLayout.CENTER);
 	}
 
 }
