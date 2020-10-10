@@ -8,7 +8,6 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 import visao.controle.VisaoControlePrincipal;
-import javax.swing.JLabel;
 
 @SuppressWarnings("serial")
 public class TelaLista extends JFrame {
