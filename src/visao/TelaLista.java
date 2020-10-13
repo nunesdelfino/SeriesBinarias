@@ -9,7 +9,8 @@ import javax.swing.border.EmptyBorder;
 
 import visao.controle.VisaoControlePrincipal;
 import javax.swing.JLabel;
-import javax.swing.SwingConstants;
+import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
 
 @SuppressWarnings("serial")
 public class TelaLista extends JFrame {
@@ -17,6 +18,7 @@ public class TelaLista extends JFrame {
 	private JPanel contentPane;
 	@SuppressWarnings("unused")
 	private VisaoControlePrincipal VisaoControle;
+	private JTable table;
 	
 
 	/**
@@ -40,23 +42,30 @@ public class TelaLista extends JFrame {
 		contentPane.setLayout(new BorderLayout(0, 0));
 		setContentPane(contentPane);
 		
-		JLabel lblNewLabel = new JLabel("New label");
-		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
-		contentPane.add(lblNewLabel, BorderLayout.CENTER);
+		table = new JTable();
+		table.setToolTipText("");
+		table.setModel(new DefaultTableModel(
+			new Object[][] {
+				{null, null, null, null, null},
+				{null, null, null, null, null},
+				{null, null, null, null, null},
+				{null, null, null, null, null},
+				{null, null, null, null, null},
+				{null, null, null, null, null},
+				{null, null, null, null, null},
+				{null, null, null, null, null},
+				{null, null, null, null, null},
+				{null, null, null, null, null},
+				{null, null, null, null, null},
+			},
+			new String[] {
+				"New column", "New column", "New column", "New column", "New column"
+			}
+		));
+		contentPane.add(table, BorderLayout.CENTER);
 		
-		JLabel lblNewLabel_1 = new JLabel("New label");
-		contentPane.add(lblNewLabel_1, BorderLayout.WEST);
-		
-		JLabel lblNewLabel_2 = new JLabel("New label");
-		lblNewLabel_2.setHorizontalAlignment(SwingConstants.CENTER);
-		contentPane.add(lblNewLabel_2, BorderLayout.SOUTH);
-		
-		JLabel lblNewLabel_3 = new JLabel("New label");
-		contentPane.add(lblNewLabel_3, BorderLayout.EAST);
-		
-		JLabel lblNewLabel_4 = new JLabel("New label");
-		lblNewLabel_4.setHorizontalAlignment(SwingConstants.CENTER);
-		contentPane.add(lblNewLabel_4, BorderLayout.NORTH);
+		JLabel lblNewLabel = new JLabel("Lista de S\u00E9ries");
+		contentPane.add(lblNewLabel, BorderLayout.NORTH);
 		
 	}
 
