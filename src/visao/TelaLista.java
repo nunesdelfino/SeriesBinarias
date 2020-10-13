@@ -8,9 +8,7 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 import visao.controle.VisaoControlePrincipal;
-import javax.swing.JButton;
 import javax.swing.JLabel;
-import javax.swing.SwingConstants;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
