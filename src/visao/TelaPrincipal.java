@@ -34,8 +34,6 @@ public class TelaPrincipal extends JFrame {
 		this.VisaoControle = VisaoCtrl;
 		InicializarTela();
 		
-//		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		
 	}
 	
 	private void InicializarTela() {
