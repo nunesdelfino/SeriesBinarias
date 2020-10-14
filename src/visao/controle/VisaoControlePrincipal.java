@@ -4,14 +4,14 @@ import javax.swing.JFrame;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
 
-import visao.TelaFormulario;
+import visao.TelaCadastro;
 import visao.TelaLista;
 import visao.TelaPrincipal;
 
 public class VisaoControlePrincipal {
 	
 	private TelaPrincipal TelaPrincipal = null;
-	private TelaFormulario TelaFormulario = null;
+	private TelaCadastro TelaCadastro = null;
 	private TelaLista TelaLista = null;
 	
 	private JFrame TelaExibindo = null;
@@ -34,8 +34,8 @@ public class VisaoControlePrincipal {
 	
 	public void ExibirTelaFormulario() {
 		this.FecharTelaExibindo();
-		this.TelaFormulario = new TelaFormulario(this);
-		TelaExibindo = TelaFormulario;
+		this.TelaCadastro = new TelaCadastro(this);
+		TelaExibindo = TelaCadastro;
 		TelaExibindo.setVisible(true);
 	}
 	

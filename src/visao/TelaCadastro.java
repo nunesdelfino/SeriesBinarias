@@ -1,32 +1,28 @@
 package visao;
 import java.awt.BorderLayout;
-import java.awt.EventQueue;
-
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
-import javax.swing.JTable;
 import java.awt.Color;
-import javax.swing.JLabel;
-import javax.swing.SwingConstants;
-import javax.swing.border.BevelBorder;
-import java.awt.GridBagLayout;
-import java.awt.GridBagConstraints;
-import java.awt.Insets;
-import javax.swing.JTextField;
-import javax.swing.BoxLayout;
-import java.awt.GridLayout;
-import net.miginfocom.swing.MigLayout;
+import java.awt.Dimension;
+import java.awt.EventQueue;
 import java.awt.Font;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
+import java.awt.Insets;
+
+import javax.swing.BoxLayout;
 import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
 import javax.swing.JRadioButton;
-import javax.swing.JList;
-import javax.swing.JSpinner;
-import javax.swing.JComboBox;
-import com.toedter.calendar.JDayChooser;
-import com.toedter.calendar.JTextFieldDateEditor;
-import com.toedter.calendar.JCalendar;
+import javax.swing.JTextField;
+import javax.swing.SwingConstants;
+import javax.swing.border.EmptyBorder;
+
 import com.toedter.calendar.JDateChooser;
+import com.toedter.calendar.JTextFieldDateEditor;
+
+import net.miginfocom.swing.MigLayout;
+import visao.controle.VisaoControlePrincipal;
 
 public class TelaCadastro extends JFrame {
 
@@ -46,30 +42,26 @@ public class TelaCadastro extends JFrame {
 	private JButton btnNewButton;
 	private JButton btnNewButton_1;
 	private JDateChooser dateChooser;
+	private VisaoControlePrincipal VisaoControle;
 
 	/**
 	 * Launch the application.
 	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					TelaCadastro frame = new TelaCadastro();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
+	public TelaCadastro(VisaoControlePrincipal VisaoCtrl) {
+		super();
+		this.VisaoControle = VisaoCtrl;
+		InicializarTela();
 	}
 
 	/**
 	 * Create the frame.
 	 */
-	public TelaCadastro() {
-		setTitle("S\u00E9ries Bin\u00E1rias");
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 450, 300);
+	public void InicializarTela() {
+		setTitle("Séries Binárias");
+		this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+		setBounds(100, 100, 600, 360);
+		setMinimumSize(new Dimension(600, 360));
+		
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
