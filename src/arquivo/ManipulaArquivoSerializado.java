@@ -1,6 +1,9 @@
 package arquivo;
 
 import java.util.List;
+
+import modelo.IModelo;
+
 import java.io.EOFException;
 import java.io.File;
 import java.io.FileInputStream;
@@ -14,8 +17,9 @@ import java.util.ArrayList;
 
 public class ManipulaArquivoSerializado {
 	
+	
 	final String SEPARADOR = System.getProperty("file.separator");
-	private List<Object> listaLinhas;
+	private List<IModelo> listaLinhas;
 	private String caminhoArquivo, nomeArquivo;
 
 	public ManipulaArquivoSerializado(String caminho, String nomeArquivo)
@@ -138,9 +142,9 @@ public class ManipulaArquivoSerializado {
 		
 		ObjectInputStream in = new ObjectInputStream(new FileInputStream(this.getNomeArquivoAbsoluto()));   
         // Deserialize the object
-		Object objeto = null;
+		IModelo objeto = null;
 		try {
-			while ((objeto = in.readObject()) != null) {
+			while ((objeto = (IModelo)in.readObject()) != null) {
 				this.getLinhas().add(objeto);
 			}
 			
@@ -161,7 +165,7 @@ public class ManipulaArquivoSerializado {
 	public void gravarArquivo() throws IOException {
 
 		ObjectOutput out = new ObjectOutputStream(new FileOutputStream(this.getNomeArquivoAbsoluto()));
-		for (Object objeto : this.getLinhas()) {
+		for (IModelo objeto : this.getLinhas()) {
 			out.writeObject(objeto);
 		}
 
@@ -169,15 +173,15 @@ public class ManipulaArquivoSerializado {
 
 	}
 
-	public void incluirLinha(Object linha) {
+	public void incluirLinha(IModelo linha) {
 		listaLinhas.add(linha);
 	}
 
-	public List<Object> getLinhas() {
+	public List<IModelo> getLinhas() {
 		return listaLinhas;
 	}
 
-	public Object getLinha(int linha) {
+	public IModelo getLinha(int linha) {
 		return listaLinhas.get(linha);
 	}
 

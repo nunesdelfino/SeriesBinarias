@@ -12,7 +12,7 @@ public class TesteSerie {
 		
 		Date DataLancamento = new GregorianCalendar(2020, Calendar.OCTOBER, 07).getTime();
 
-		Serie s = new Serie("How I met your mother", 50, DataLancamento);
+		Serie s = new Serie("How I met your mother", 50, DataLancamento, true);
 		
 		System.out.println(s.toString());
 

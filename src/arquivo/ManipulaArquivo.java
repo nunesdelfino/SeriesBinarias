@@ -1,6 +1,9 @@
 package arquivo;
 
 import java.util.List;
+
+import modelo.IModelo;
+
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -11,7 +14,7 @@ public abstract class ManipulaArquivo {
 	
 	 protected String CaminhoArquivo, NomeArquivo;
 	 
-	 private List<Object> ListaLinhas;
+	 private List<IModelo> ListaLinhas;
 	 
 	 protected boolean preparaLocalDados() {
 		String strCaminhoDados = ManipulaArquivo.getCaminhoAplicacao() + SEPARADOR + this.getCaminhoArquivo();
@@ -96,15 +99,15 @@ public abstract class ManipulaArquivo {
 		return null;
 	}
 	
-	public void incluirLinha(Object linha) {
+	public void incluirLinha(IModelo linha) {
 		ListaLinhas.add(linha);
 	}
 
-	public List<Object> getLinhas() {
+	public List<IModelo> getLinhas() {
 		return ListaLinhas;
 	}
 
-	public Object getLinha(int linha) {
+	public IModelo getLinha(int linha) {
 		return ListaLinhas.get(linha);
 	}
 	 

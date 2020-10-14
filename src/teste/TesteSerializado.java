@@ -1,10 +1,9 @@
 package teste;
 
 import java.io.IOException;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.GregorianCalendar;
+
 import arquivo.ManipulaArquivoSerializado;
+import modelo.IModelo;
 import modelo.Serie;
 
 public class TesteSerializado {
@@ -41,16 +40,15 @@ public class TesteSerializado {
 			System.exit(1); 
 		}
 
-		for(Object objeto: mas.getLinhas()) {
+		for(IModelo objeto: mas.getLinhas()) {
 			Serie p = (Serie)objeto;
 			System.out.println(p);
 		}
 		
-		
 	}
 	public static void main(String[] args) {
 //		testeInclusao();
-//		testeLeitura();
+		testeLeitura();
 	}
 
 }
