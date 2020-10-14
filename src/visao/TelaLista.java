@@ -5,6 +5,8 @@ import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -14,21 +16,26 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
 
+import controle.ControleSerie;
+import modelo.IModelo;
+import modelo.Serie;
+import visao.Jtable.ModeloJTableModel;
 import visao.controle.VisaoControlePrincipal;
 
 @SuppressWarnings("serial")
 public class TelaLista extends JFrame {
 
 	private JPanel contentPane;
-	@SuppressWarnings("unused")
 	private VisaoControlePrincipal VisaoControle;
-	private JScrollPane scrollPane;
 	private JTable table;
 	private JPanel panel;
 	private JButton btnNewButton;
 	private JButton btnNewButton_1;
 	private JButton btnNewButton_2;
+	private ControleSerie Controle;
 	
 
 	/**
@@ -56,11 +63,15 @@ public class TelaLista extends JFrame {
 		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		contentPane.add(lblNewLabel, BorderLayout.NORTH);
 		
-		scrollPane = new JScrollPane();
-		contentPane.add(scrollPane, BorderLayout.CENTER);
+
+		CriarControle();
 		
-		table = new JTable();
-		scrollPane.setViewportView(table);
+		CriarTabela();
+		
+		PreencherTabela();
+		
+		JScrollPane scrollPane = new JScrollPane(table);
+		contentPane.add(scrollPane, BorderLayout.CENTER);
 		
 		panel = new JPanel();
 		contentPane.add(panel, BorderLayout.SOUTH);
@@ -87,8 +98,34 @@ public class TelaLista extends JFrame {
 		panel.add(btnNewButton_2);
 		
 		
+		
+		
 	}
 	
+	private void PreencherTabela() {
+		List<IModelo> Lista = Controle.getLista();
+		Serie TabelaSerie = new Serie();
+		table.setModel(new ModeloJTableModel(Lista, TabelaSerie));
+		
+	}
+
+	private void CriarTabela() {
+		table = new JTable();
+		ModeloJTableModel DataModelo = new ModeloJTableModel(new ArrayList<IModelo>(), new Serie());
+		table.setModel(DataModelo);
+		
+		table.getSelectionModel().addListSelectionListener(new ListSelectionListener(){
+			public void valueChanged(ListSelectionEvent e) {
+				System.out.println("Certo");
+			}
+		});
+	}
+
+	private void CriarControle() {
+		this.Controle = new ControleSerie();
+		
+	}
+
 	public VisaoControlePrincipal getVisaoControle() {
 		
 		return VisaoControle;

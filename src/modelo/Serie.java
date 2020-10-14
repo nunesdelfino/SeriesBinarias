@@ -5,9 +5,14 @@ import java.util.Date;
 import utils.DateUtils;
 
 
-@SuppressWarnings("serial")
-public class Serie implements Serializable {
+public class Serie implements Serializable, IModelo {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 4969722851056697744L;
+	
+	
 	private String Nome;
 	private Date Lancamento;
 	private Boolean Encerrada;
@@ -24,11 +29,12 @@ public class Serie implements Serializable {
 		
 	}
 	
-	public Serie(String Nome, Integer Episodios, Date Lancamento) {
+	public Serie(String Nome, Integer Episodios, Date Lancamento, Boolean Encerrada) {
 		super();
 		this.Nome = Nome;
 		this.Episodios = Episodios;
 		this.Lancamento = Lancamento;
+		this.Encerrada = Encerrada;
 	}
 	
 	public Serie() {
@@ -87,6 +93,61 @@ public class Serie implements Serializable {
 		return DateUtils.getDia(this.getLancamento()) + "/" + 
 				DateUtils.getMes(this.getLancamento()) + "/" +
 				DateUtils.getAno(this.getLancamento());
+	}
+	
+	public String getAtributoNome(int Coluna) {
+		
+		String NomeColuna = "";
+		
+		switch(Coluna) {
+			case 0:
+				NomeColuna = "Nome";
+				break;
+			case 1:
+				NomeColuna = "Data de Lancamento";
+				break;
+			case 2:
+				NomeColuna = "Encerrada";
+				break;
+			case 3:
+				NomeColuna = "Número de Teporadas";
+				break;
+			case 4:
+				NomeColuna = "Número de Episódios";
+				break;
+		}
+		
+		return NomeColuna;
+		
+	}
+	
+	public Object getAtributoValor(int Coluna) {
+		
+		Object ValorColuna = null;
+		
+		switch(Coluna) {
+			case 0:
+				ValorColuna = this.getNome();
+				break;
+			case 1:
+				ValorColuna = this.DataFormatada();
+				break;
+			case 2:
+				ValorColuna = this.isEncerrada()?"Sim":"Não";
+				break;
+			case 3:
+				ValorColuna = this.getTemporadas();
+				break;
+			case 4:
+				ValorColuna = this.getEpisodios();
+				break;
+		}
+		
+		return ValorColuna;
+	}
+	
+	public int getNumeroAtributos() {
+		return 5;
 	}
 	
 }
