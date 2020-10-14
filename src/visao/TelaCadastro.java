@@ -87,6 +87,7 @@ public class TelaCadastro extends JFrame {
 		panel_1.setLayout(new MigLayout("", "[][grow]", "[][][:5.00:20px,fill][][][][][][]"));
 		
 		lblNewLabel_1 = new JLabel(" Nome da s\u00E9rie: ");
+		lblNewLabel_1.setFont(new Font("Segoe UI Semilight", Font.PLAIN, 15));
 		panel_1.add(lblNewLabel_1, "cell 0 1,alignx left");
 		
 		textField = new JTextField();
@@ -94,6 +95,7 @@ public class TelaCadastro extends JFrame {
 		textField.setColumns(10);
 		
 		lblNewLabel_2 = new JLabel(" Data de lan\u00E7amento: ");
+		lblNewLabel_2.setFont(new Font("Segoe UI Semilight", Font.PLAIN, 15));
 		panel_1.add(lblNewLabel_2, "cell 0 2,alignx left");
 		
 		dateChooser = new JDateChooser();
@@ -104,12 +106,15 @@ public class TelaCadastro extends JFrame {
 		panel_1.add(dateChooser, "cell 1 2,grow");
 		
 		lblNewLabel_3 = new JLabel(" Est\u00E1 encerrada?");
+		lblNewLabel_3.setFont(new Font("Segoe UI Semilight", Font.PLAIN, 15));
 		panel_1.add(lblNewLabel_3, "cell 0 3");
 		
 		rdbtnNewRadioButton = new JRadioButton("Sim");
+		rdbtnNewRadioButton.setFont(new Font("Segoe UI Semilight", Font.PLAIN, 15));
 		panel_1.add(rdbtnNewRadioButton, "flowx,cell 1 3");
 		
 		lblNewLabel_4 = new JLabel(" N\u00FAmero de temporadas :");
+		lblNewLabel_4.setFont(new Font("Segoe UI Semilight", Font.PLAIN, 15));
 		panel_1.add(lblNewLabel_4, "cell 0 4,alignx left");
 		
 		textField_3 = new JTextField();
@@ -117,6 +122,7 @@ public class TelaCadastro extends JFrame {
 		textField_3.setColumns(10);
 		
 		lblNewLabel_5 = new JLabel(" N\u00FAmero de epis\u00F3dios: ");
+		lblNewLabel_5.setFont(new Font("Segoe UI Semilight", Font.PLAIN, 15));
 		panel_1.add(lblNewLabel_5, "cell 0 5,alignx left");
 		
 		textField_4 = new JTextField();
@@ -124,9 +130,11 @@ public class TelaCadastro extends JFrame {
 		textField_4.setColumns(10);
 		
 		rdbtnNewRadioButton_1 = new JRadioButton("N\u00E3o");
+		rdbtnNewRadioButton_1.setFont(new Font("Segoe UI Semilight", Font.PLAIN, 15));
 		panel_1.add(rdbtnNewRadioButton_1, "cell 1 3");
 		
 		lblNewLabel_6 = new JLabel("Cadastro de s\u00E9ries");
+		lblNewLabel_6.setFont(new Font("Perpetua Titling MT", Font.PLAIN, 18));
 		lblNewLabel_6.setHorizontalAlignment(SwingConstants.CENTER);
 		contentPane.add(lblNewLabel_6, BorderLayout.NORTH);
 		
@@ -134,12 +142,15 @@ public class TelaCadastro extends JFrame {
 		contentPane.add(panel_2, BorderLayout.SOUTH);
 		
 		btnNewButton = new JButton("Salvar");
+		btnNewButton.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		panel_2.add(btnNewButton);
 		
 		btnNewButton_2 = new JButton("Cancelar");
+		btnNewButton_2.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		panel_2.add(btnNewButton_2);
 		
 		btnNewButton_1 = new JButton("Visualizar lista");
+		btnNewButton_1.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		panel_2.add(btnNewButton_1);
 		
 	}
