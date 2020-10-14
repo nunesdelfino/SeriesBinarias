@@ -62,7 +62,7 @@ public class TelaPrincipal extends JFrame {
 		panel.setBackground(Color.BLACK);
 		contentPane.add(panel, BorderLayout.SOUTH);
 		
-		JButton BtnCadastrar = new JButton("Cadastrar s\u00E9ries");
+		JButton BtnCadastrar = new JButton("Cadastrar séries");
 		BtnCadastrar.setPreferredSize(new Dimension(130, 30));
 		
 		BtnCadastrar.addActionListener(new ActionListener() {			
@@ -74,7 +74,7 @@ public class TelaPrincipal extends JFrame {
 		
 		panel.add(BtnCadastrar);
 		
-		JButton BtnListar = new JButton("Listar s\u00E9ries");
+		JButton BtnListar = new JButton("Listar séries");
 		BtnListar.setPreferredSize(new Dimension(130, 30));
 		
 		BtnListar.addActionListener(new ActionListener() {			
