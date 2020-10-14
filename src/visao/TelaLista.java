@@ -66,6 +66,7 @@ public class TelaLista extends JFrame {
 		contentPane.add(panel, BorderLayout.SOUTH);
 		
 		btnNewButton = new JButton("Editar");
+		btnNewButton.setFont(new Font("Tahoma", Font.PLAIN, 11));
 		btnNewButton.setPreferredSize(new Dimension(130, 30));
 		panel.add(btnNewButton);
 		
@@ -77,10 +78,12 @@ public class TelaLista extends JFrame {
 
 		});
 		btnNewButton_1.setPreferredSize(new Dimension(130, 30));
+		btnNewButton_1.setFont(new Font("Tahoma", Font.PLAIN, 11));
 		panel.add(btnNewButton_1);
 		
 		btnNewButton_2 = new JButton("Excluir");
 		btnNewButton_2.setPreferredSize(new Dimension(130, 30));
+		btnNewButton_2.setFont(new Font("Tahoma", Font.PLAIN, 11));
 		panel.add(btnNewButton_2);
 		
 		

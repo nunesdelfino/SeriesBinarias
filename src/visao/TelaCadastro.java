@@ -142,15 +142,18 @@ public class TelaCadastro extends JFrame {
 		contentPane.add(panel_2, BorderLayout.SOUTH);
 		
 		btnNewButton = new JButton("Salvar");
-		btnNewButton.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		btnNewButton.setPreferredSize(new Dimension(130, 30));
+		btnNewButton.setFont(new Font("Tahoma", Font.PLAIN, 11));
 		panel_2.add(btnNewButton);
 		
 		btnNewButton_2 = new JButton("Cancelar");
-		btnNewButton_2.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		btnNewButton_2.setPreferredSize(new Dimension(130, 30));
+		btnNewButton_2.setFont(new Font("Tahoma", Font.PLAIN, 11));
 		panel_2.add(btnNewButton_2);
 		
 		btnNewButton_1 = new JButton("Visualizar lista");
-		btnNewButton_1.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		btnNewButton_1.setPreferredSize(new Dimension(130, 30));
+		btnNewButton_1.setFont(new Font("Tahoma", Font.PLAIN, 11));
 		panel_2.add(btnNewButton_1);
 		
 	}
