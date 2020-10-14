@@ -2,6 +2,9 @@ package visao;
 
 import java.awt.BorderLayout;
 import java.awt.Dimension;
+import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -9,11 +12,10 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
+import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
 
 import visao.controle.VisaoControlePrincipal;
-import javax.swing.SwingConstants;
-import java.awt.Font;
 
 @SuppressWarnings("serial")
 public class TelaLista extends JFrame {
@@ -36,8 +38,7 @@ public class TelaLista extends JFrame {
 		super();
 		this.VisaoControle = VisaoCtrl;
 		InicializarTela();
-		
-//		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
 		
 	}
 	
@@ -69,6 +70,12 @@ public class TelaLista extends JFrame {
 		panel.add(btnNewButton);
 		
 		btnNewButton_1 = new JButton("Voltar");
+		btnNewButton_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				getVisaoControle().ExibirTelaPrincipal();
+			}
+
+		});
 		btnNewButton_1.setPreferredSize(new Dimension(130, 30));
 		panel.add(btnNewButton_1);
 		
@@ -76,6 +83,12 @@ public class TelaLista extends JFrame {
 		btnNewButton_2.setPreferredSize(new Dimension(130, 30));
 		panel.add(btnNewButton_2);
 		
+		
+	}
+	
+	public VisaoControlePrincipal getVisaoControle() {
+		
+		return VisaoControle;
 	}
 
 }
