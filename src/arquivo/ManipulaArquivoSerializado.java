@@ -143,6 +143,7 @@ public class ManipulaArquivoSerializado {
 			while ((objeto = in.readObject()) != null) {
 				this.getLinhas().add(objeto);
 			}
+			
 		}catch(EOFException e) {
 			//faz nada, pois chegar ao fim do arquivo não é problema
 		} catch (ClassNotFoundException e) {
