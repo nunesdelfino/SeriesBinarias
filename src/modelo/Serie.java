@@ -40,7 +40,7 @@ public class Serie implements Serializable {
 				"Data de Lançamento: " + DataFormatada() + "\n" +
 				"Encerrada: " + Encerrada + "\n" +
 				"Número de Temporadas: " + Temporadas + "\n" +
-				"Número de Episódios: " + Episodios;
+				"Número de Episódios: " + Episodios + "\n\n";
 	}
 
 	public String getNome() {

@@ -9,17 +9,18 @@ import modelo.Serie;
 
 public class TesteSerializado {
 
-	public static void testeInclusao() {
+	public static void testeInclusao(Object Teste) {
 		ManipulaArquivoSerializado mas=null;
 		try {
-			mas = new ManipulaArquivoSerializado("RegistroSeries", "Series.ser");
+			mas = new ManipulaArquivoSerializado("RegistroSeries", "Series.karen");
 		} catch (ClassNotFoundException | IOException e) {
 			e.printStackTrace();
 			System.exit(1);
 		}
 		
-		Date DataLancamento = new GregorianCalendar(2020, Calendar.OCTOBER, 07).getTime();
-		Serie p1 = new Serie("How I met your mother", DataLancamento, false, 12, 781);
+		
+		Serie p1 =  (Serie) Teste;
+		mas.limparLinhas();
 		mas.incluirLinha(p1);
 		
 		try {
@@ -29,10 +30,11 @@ public class TesteSerializado {
 		}
 		
 	}
+	
 	public static void testeLeitura() {
 		ManipulaArquivoSerializado mas=null;
 		try {
-			mas = new ManipulaArquivoSerializado("RegistroSeries", "Series.ser");
+			mas = new ManipulaArquivoSerializado("RegistroSeries", "Series.karen");
 			mas.lerArquivo();
 		} catch (ClassNotFoundException | IOException e) {
 			e.printStackTrace();
@@ -47,8 +49,8 @@ public class TesteSerializado {
 		
 	}
 	public static void main(String[] args) {
-		testeInclusao();
-		testeLeitura();
+//		testeInclusao();
+//		testeLeitura();
 	}
 
 }
