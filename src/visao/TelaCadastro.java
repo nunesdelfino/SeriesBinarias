@@ -2,7 +2,6 @@ package visao;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
-import java.awt.EventQueue;
 import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
@@ -25,6 +24,7 @@ import net.miginfocom.swing.MigLayout;
 import visao.controle.VisaoControlePrincipal;
 import java.awt.FlowLayout;
 
+@SuppressWarnings("serial")
 public class TelaCadastro extends JFrame {
 
 	private JPanel contentPane;
