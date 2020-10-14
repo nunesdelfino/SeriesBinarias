@@ -15,10 +15,7 @@ public abstract class ManipulaArquivo {
 	 
 	 protected boolean preparaLocalDados() {
 		String strCaminhoDados = ManipulaArquivo.getCaminhoAplicacao() + SEPARADOR + this.getCaminhoArquivo();
-		// CaminhoAplicação = c:\portalbe20201\workspace\05-02-ManipulandoArquivo
-		// /
-		// dados
-		// c:\portable20201\workspace\05-02-ManipulandoArquivo\dados
+		
 		File caminhoDados = new File(strCaminhoDados);
 		try {
 			if (!caminhoDados.exists()) {
