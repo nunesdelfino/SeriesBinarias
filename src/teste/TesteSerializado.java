@@ -32,7 +32,7 @@ public class TesteSerializado {
 	public static void testeLeitura() {
 		ManipulaArquivoSerializado mas=null;
 		try {
-			mas = new ManipulaArquivoSerializado("dadosObjetos", "pessoa.ser");
+			mas = new ManipulaArquivoSerializado("RegistroSeries", "Series.ser");
 			mas.lerArquivo();
 		} catch (ClassNotFoundException | IOException e) {
 			e.printStackTrace();
