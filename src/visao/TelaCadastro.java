@@ -141,6 +141,7 @@ public class TelaCadastro extends JFrame {
 		
 		btnNewButton_1 = new JButton("Visualizar lista");
 		panel_2.add(btnNewButton_1);
+		
 	}
 
 }
