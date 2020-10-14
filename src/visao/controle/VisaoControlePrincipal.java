@@ -1,14 +1,9 @@
 package visao.controle;
 
-import java.util.Calendar;
-import java.util.Date;
-import java.util.GregorianCalendar;
-
 import javax.swing.JFrame;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
 
-import modelo.Serie;
 import visao.TelaCadastro;
 import visao.TelaLista;
 import visao.TelaPrincipal;
