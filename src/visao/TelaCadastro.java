@@ -5,12 +5,16 @@ import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
+import java.util.Date;
 
 import javax.swing.BoxLayout;
 import javax.swing.ButtonGroup;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 import javax.swing.JTextField;
@@ -20,9 +24,10 @@ import javax.swing.border.EmptyBorder;
 import com.toedter.calendar.JDateChooser;
 import com.toedter.calendar.JTextFieldDateEditor;
 
+import controle.ControleSerie;
+import controle.SaveRead;
 import modelo.Serie;
 import net.miginfocom.swing.MigLayout;
-import teste.TesteSerializado;
 import visao.controle.VisaoControlePrincipal;
 
 @SuppressWarnings("serial")
@@ -49,14 +54,36 @@ public class TelaCadastro extends JFrame {
 	private JButton BtnCancelar;
 	private JPanel panel_2;
 	private final ButtonGroup buttonGroup = new ButtonGroup();
+	
+	private ControleSerie Controle = new ControleSerie();
+	
+	
+	String Nome;
+	Date Lancamento;
+	Boolean Encerrada;
+	Integer Temporadas;
+	Integer Episodios;
+	
+	Integer posicao;
+	
 
 	/**
 	 * Launch the application.
+	 * @wbp.parser.constructor
 	 */
 	public TelaCadastro(VisaoControlePrincipal VisaoCtrl) {
 		super();
 		this.VisaoControle = VisaoCtrl;
 		InicializarTela();
+	}
+	
+	public TelaCadastro(VisaoControlePrincipal VisaoCtrl, Serie s, int posicao) {
+		super();
+		this.VisaoControle = VisaoCtrl;
+		InicializarTela();
+		DefineDados(s);
+		this.posicao = posicao;
+		
 	}
 
 	/**
@@ -101,7 +128,6 @@ public class TelaCadastro extends JFrame {
 		panel_1.add(TxtDataLancamento, "cell 0 2,alignx left");
 		
 		InpDataLancamento = new JDateChooser();
-//		BorderLayout bl_InpDataLancamento = (BorderLayout) InpDataLancamento.getLayout();
 		JTextFieldDateEditor editor = (JTextFieldDateEditor) InpDataLancamento.getDateEditor();
 		editor.setEditable(false);
 		
@@ -121,6 +147,16 @@ public class TelaCadastro extends JFrame {
 		panel_1.add(TxtNumTemporadas, "cell 0 4,alignx left");
 		
 		InpNumTemporadas = new JTextField();
+		InpNumTemporadas.addKeyListener(new KeyAdapter(){
+			public void keyPressed(KeyEvent event) {
+				
+				if(event.getKeyChar() >= '0' && event.getKeyChar() <= '9' || ((int) event.getKeyChar()) == 8) {
+					InpNumTemporadas.setEditable(true);
+				} else {
+					InpNumTemporadas.setEditable(false);
+				}
+			}
+		});
 		panel_1.add(InpNumTemporadas, "cell 1 4,growx");
 		InpNumTemporadas.setColumns(10);
 		
@@ -129,6 +165,16 @@ public class TelaCadastro extends JFrame {
 		panel_1.add(TxtNumEpisodios, "cell 0 5,alignx left");
 		
 		InpNumEpisodios = new JTextField();
+		InpNumEpisodios.addKeyListener(new KeyAdapter(){
+			public void keyPressed(KeyEvent event) {
+				
+				if(event.getKeyChar() >= '0' && event.getKeyChar() <= '9' || ((int) event.getKeyChar()) == 8) {
+					InpNumEpisodios.setEditable(true);
+				} else {
+					InpNumEpisodios.setEditable(false);
+				}
+			}
+		});
 		panel_1.add(InpNumEpisodios, "cell 1 5,growx");
 		InpNumEpisodios.setColumns(10);
 		
@@ -149,7 +195,7 @@ public class TelaCadastro extends JFrame {
 		BtnSalvar = new JButton("Salvar");
 		BtnSalvar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				TestarBotaoSalvar();
+				SalvarDados();
 			}
 		});
 		BtnSalvar.setPreferredSize(new Dimension(130, 30));
@@ -183,26 +229,83 @@ public class TelaCadastro extends JFrame {
 		return VisaoControle;
 	}
 	
-	public void TestarBotaoSalvar() {
+	public void DefineDados(Serie s) {
 		
-		Integer Episodios;
-		Integer Temporadas;
-		Boolean Encerrada;
-		
-		Episodios = Integer.parseUnsignedInt(this.InpNumEpisodios.getText());
-		Temporadas = Integer.parseUnsignedInt(this.InpNumTemporadas.getText());
-		
-		if(this.BtnSim.isSelected()) {
-			Encerrada = true;
+		this.InpNome.setText(s.getNome());
+		this.InpNumTemporadas.setText(Integer.toString(s.getTemporadas()));
+		this.InpNumEpisodios.setText(Integer.toString(s.getEpisodios()));
+		if(s.isEncerrada()) {
+			this.BtnSim.setSelected(true);
 		} else {
-			Encerrada = false;
+			this.BtnNao.setSelected(true);
 		}
+		this.InpDataLancamento.setDate(s.getLancamento());
+		this.BtnSalvar.setText("Editar");
 		
-		Serie s = new Serie(this.InpNome.getText(), this.InpDataLancamento.getDate(), Encerrada, Temporadas, Episodios);
+	}
+	
+	public void editar() {
 		
-		TesteSerializado.testeInclusao(s);
+		Controle.removeLinha(this.posicao);
+		valoresSalvar();
+		getVisaoControle().ExibirTelaLista();
+	}
+	
+	public void Salvar() {
 		
-		TesteSerializado.testeLeitura();
+		valoresSalvar();
+		
+	}
+
+	public void valoresSalvar() {
+		if(!this.InpNome.getText().equals("") &&
+				this.InpDataLancamento.getDate() != null &&
+				!this.InpNumEpisodios.getText().equals("") &&
+				!this.InpNumTemporadas.getText().equals("")) {
+
+			Integer Episodios;
+			Integer Temporadas;
+			Boolean Encerrada;
+			
+			Episodios = Integer.parseUnsignedInt(this.InpNumEpisodios.getText());
+			Temporadas = Integer.parseUnsignedInt(this.InpNumTemporadas.getText());
+			
+			if(this.BtnSim.isSelected()) {
+				Encerrada = true;
+			} else {
+				Encerrada = false;
+			}
+			
+			Serie s = new Serie(this.InpNome.getText(), this.InpDataLancamento.getDate(), Encerrada, Temporadas, Episodios);
+			
+			
+			SaveRead.Incluir(s);
+			
+			LimparTela();
+			
+		} else {
+			String Mensagem = "Todos os campos devem estar preenchidos!";
+			JOptionPane.showMessageDialog(null, Mensagem, null, JOptionPane.INFORMATION_MESSAGE);
+		}
+	}
+	
+	public void SalvarDados() {
+		if(this.BtnSalvar.getText().equals("Salvar")) {
+			Salvar();
+		} else if(this.BtnSalvar.getText().equals("Editar")) {
+			editar();
+		}
+	}
+
+	private void LimparTela() {
+
+		this.InpNome.setText("");
+		this.InpNumTemporadas.setText("");
+		this.InpNumEpisodios.setText("");
+		this.BtnSim.setSelected(false);
+		this.BtnNao.setSelected(false);
+		this.InpDataLancamento.setDate(null);
+		
 		
 	}
 

@@ -12,7 +12,6 @@ public class Serie implements Serializable, IModelo {
 	 */
 	private static final long serialVersionUID = 4969722851056697744L;
 	
-	
 	private String Nome;
 	private Date Lancamento;
 	private Boolean Encerrada;
@@ -29,7 +28,7 @@ public class Serie implements Serializable, IModelo {
 		
 	}
 	
-	public Serie(String Nome, Integer Episodios, Date Lancamento, Boolean Encerrada) {
+	public Serie(String Nome,  Date Lancamento, Boolean Encerrada, Integer Episodios) {
 		super();
 		this.Nome = Nome;
 		this.Episodios = Episodios;
@@ -89,12 +88,6 @@ public class Serie implements Serializable, IModelo {
 		this.Episodios = episodios;
 	}
 	
-	public String DataFormatada() {
-		return DateUtils.getDia(this.getLancamento()) + "/" + 
-				DateUtils.getMes(this.getLancamento()) + "/" +
-				DateUtils.getAno(this.getLancamento());
-	}
-	
 	public String getAtributoNome(int Coluna) {
 		
 		String NomeColuna = "";
@@ -121,6 +114,12 @@ public class Serie implements Serializable, IModelo {
 		
 	}
 	
+	public String DataFormatada() {
+		return DateUtils.getDia(this.getLancamento()) + "/" + 
+				DateUtils.getMes(this.getLancamento()) + "/" +
+				DateUtils.getAno(this.getLancamento());
+	}
+	
 	public Object getAtributoValor(int Coluna) {
 		
 		Object ValorColuna = null;
@@ -130,7 +129,7 @@ public class Serie implements Serializable, IModelo {
 				ValorColuna = this.getNome();
 				break;
 			case 1:
-				ValorColuna = this.DataFormatada();
+				ValorColuna = DataFormatada();
 				break;
 			case 2:
 				ValorColuna = this.isEncerrada()?"Sim":"Não";

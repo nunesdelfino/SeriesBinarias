@@ -11,6 +11,7 @@ import java.util.List;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
@@ -18,7 +19,9 @@ import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
+import javax.swing.table.AbstractTableModel;
 
+import arquivo.ManipulaArquivoSerializado;
 import controle.ControleSerie;
 import modelo.IModelo;
 import modelo.Serie;
@@ -77,6 +80,13 @@ public class TelaLista extends JFrame {
 		contentPane.add(panel, BorderLayout.SOUTH);
 		
 		btnNewButton = new JButton("Editar");
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if(table.getSelectedRow() != -1) {
+					Editar();
+				}
+			}
+		});
 		btnNewButton.setFont(new Font("Tahoma", Font.PLAIN, 11));
 		btnNewButton.setPreferredSize(new Dimension(130, 30));
 		panel.add(btnNewButton);
@@ -93,6 +103,12 @@ public class TelaLista extends JFrame {
 		panel.add(btnNewButton_1);
 		
 		btnNewButton_2 = new JButton("Excluir");
+		btnNewButton_2.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				ExcluirLinha();
+			}
+
+		});
 		btnNewButton_2.setPreferredSize(new Dimension(130, 30));
 		btnNewButton_2.setFont(new Font("Tahoma", Font.PLAIN, 11));
 		panel.add(btnNewButton_2);
@@ -102,7 +118,28 @@ public class TelaLista extends JFrame {
 		
 	}
 	
+	private void Editar() {
+		
+		
+		int linha = table.getSelectedRow();
+		ModeloJTableModel modeloJTableModel = (ModeloJTableModel)table.getModel();
+		IModelo modelo = modeloJTableModel.getModeloLinha(linha);
+		
+		Serie s = (Serie) modelo;
+		getVisaoControle().ExibirTelaCadastro(s, table.getSelectedRow());
+		
+		
+	}
+
+	private void ExcluirLinha() {
+		
+		Controle.removeLinha(table.getSelectedRow());
+		PreencherTabela();
+		
+	}
+	
 	private void PreencherTabela() {
+		this.CriarControle();
 		List<IModelo> Lista = Controle.getLista();
 		Serie TabelaSerie = new Serie();
 		table.setModel(new ModeloJTableModel(Lista, TabelaSerie));
@@ -113,12 +150,6 @@ public class TelaLista extends JFrame {
 		table = new JTable();
 		ModeloJTableModel DataModelo = new ModeloJTableModel(new ArrayList<IModelo>(), new Serie());
 		table.setModel(DataModelo);
-		
-		table.getSelectionModel().addListSelectionListener(new ListSelectionListener(){
-			public void valueChanged(ListSelectionEvent e) {
-				System.out.println("Certo");
-			}
-		});
 	}
 
 	private void CriarControle() {

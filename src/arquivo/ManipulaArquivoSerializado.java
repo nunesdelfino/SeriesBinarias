@@ -2,7 +2,9 @@ package arquivo;
 
 import java.util.List;
 
+import controle.SaveRead;
 import modelo.IModelo;
+import modelo.Serie;
 
 import java.io.EOFException;
 import java.io.File;
@@ -171,6 +173,20 @@ public class ManipulaArquivoSerializado {
 
 		out.close();
 
+	}
+	
+	public static void RemoveLinha(int Posicao) {
+		
+		ManipulaArquivoSerializado ListaSerie = SaveRead.Ler();
+		
+		ListaSerie.getLinhas().remove(Posicao);
+		try {
+			ListaSerie.gravarArquivo();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
 	}
 
 	public void incluirLinha(IModelo linha) {

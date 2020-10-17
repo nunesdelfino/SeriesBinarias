@@ -4,6 +4,7 @@ import javax.swing.JFrame;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
 
+import modelo.Serie;
 import visao.TelaCadastro;
 import visao.TelaLista;
 import visao.TelaPrincipal;
@@ -32,9 +33,16 @@ public class VisaoControlePrincipal {
 		TelaExibindo.setVisible(true);
 	}
 	
-	public void ExibirTelaFormulario() {
+	public void ExibirTelaCadastro() {
 		this.FecharTelaExibindo();
 		this.TelaCadastro = new TelaCadastro(this);
+		TelaExibindo = TelaCadastro;
+		TelaExibindo.setVisible(true);
+	}
+	
+	public void ExibirTelaCadastro(Serie s, int posicao) {
+		this.FecharTelaExibindo();
+		this.TelaCadastro = new TelaCadastro(this, s, posicao);
 		TelaExibindo = TelaCadastro;
 		TelaExibindo.setVisible(true);
 	}

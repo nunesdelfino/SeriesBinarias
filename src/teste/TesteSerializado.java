@@ -19,7 +19,6 @@ public class TesteSerializado {
 		
 		
 		Serie p1 =  (Serie) Teste;
-		mas.limparLinhas();
 		mas.incluirLinha(p1);
 		
 		try {
