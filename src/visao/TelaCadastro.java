@@ -254,8 +254,9 @@ public class TelaCadastro extends JFrame {
 			Controle.removeLinha(this.posicao);
 			valoresSalvar();
 			getVisaoControle().ExibirTelaLista();
+			JOptionPane.showMessageDialog(null, "Edição realizada com sucesso", "Editar", JOptionPane.INFORMATION_MESSAGE);
 		} catch (IOException e) {
-			JOptionPane.showMessageDialog(null, "Não foi possivel editar linha", "Editar Linha", JOptionPane.INFORMATION_MESSAGE);
+			JOptionPane.showMessageDialog(null, "Não foi possivel editar linha", "Editar", JOptionPane.INFORMATION_MESSAGE);
 		}
 		
 	}
@@ -263,6 +264,7 @@ public class TelaCadastro extends JFrame {
 	public void Salvar() {
 		
 		valoresSalvar();
+		JOptionPane.showMessageDialog(null, "Série salva com sucesso", "Salvar", JOptionPane.INFORMATION_MESSAGE);
 		
 	}
 

@@ -8,7 +8,6 @@ import java.awt.event.ActionListener;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -18,7 +17,6 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
-
 import controle.ControleSerie;
 import modelo.IModelo;
 import modelo.Serie;
@@ -46,8 +44,6 @@ public class TelaLista extends JFrame {
 		super();
 		this.VisaoControle = VisaoCtrl;
 		InicializarTela();
-
-		
 	}
 	
 	public void InicializarTela() {
@@ -65,11 +61,8 @@ public class TelaLista extends JFrame {
 		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		contentPane.add(lblNewLabel, BorderLayout.NORTH);
 		
-
 		CriarControle();
-		
 		CriarTabela();
-		
 		PreencherTabela();
 		
 		JScrollPane scrollPane = new JScrollPane(table);
@@ -95,7 +88,6 @@ public class TelaLista extends JFrame {
 			public void actionPerformed(ActionEvent arg0) {
 				getVisaoControle().ExibirTelaPrincipal();
 			}
-
 		});
 		btnNewButton_1.setPreferredSize(new Dimension(130, 30));
 		btnNewButton_1.setFont(new Font("Tahoma", Font.PLAIN, 11));
@@ -106,14 +98,10 @@ public class TelaLista extends JFrame {
 			public void actionPerformed(ActionEvent arg0) {
 				ExcluirLinha();
 			}
-
 		});
 		btnNewButton_2.setPreferredSize(new Dimension(130, 30));
 		btnNewButton_2.setFont(new Font("Tahoma", Font.PLAIN, 11));
 		panel.add(btnNewButton_2);
-		
-		
-		
 		
 	}
 	
@@ -127,18 +115,16 @@ public class TelaLista extends JFrame {
 		Serie s = (Serie) modelo;
 		getVisaoControle().ExibirTelaCadastro(s, table.getSelectedRow());
 		
-		
 	}
 
 	private void ExcluirLinha() {
-		
 		try {
 			Controle.removeLinha(table.getSelectedRow());
+			PreencherTabela();
+			JOptionPane.showMessageDialog(null, "Exclusão realizada com sucesso", "Excluir", JOptionPane.INFORMATION_MESSAGE);
 		} catch (IOException e) {
 			JOptionPane.showMessageDialog(null, "Não foi possivel remover linha", "Remover Linha", JOptionPane.INFORMATION_MESSAGE);
 		}
-		PreencherTabela();
-		
 	}
 	
 	private void PreencherTabela() {
@@ -146,7 +132,6 @@ public class TelaLista extends JFrame {
 		List<IModelo> Lista = Controle.getLista();
 		Serie TabelaSerie = new Serie();
 		table.setModel(new ModeloJTableModel(Lista, TabelaSerie));
-		
 	}
 
 	private void CriarTabela() {
