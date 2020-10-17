@@ -51,6 +51,7 @@ public class TelaLista extends JFrame {
 	}
 	
 	public void InicializarTela() {
+		this.setTitle("Lista de Séries");
 		this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 600, 360);
 		setMinimumSize(new Dimension(600, 360));

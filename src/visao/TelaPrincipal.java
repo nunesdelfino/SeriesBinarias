@@ -3,7 +3,6 @@ package visao;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
-import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -37,7 +36,7 @@ public class TelaPrincipal extends JFrame {
 	}
 	
 	private void InicializarTela() {
-		this.setTitle("Aplicação com menu");
+		this.setTitle("Séries Binárias");
 		this.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 		
 		setBounds(100, 100, 600, 360);
