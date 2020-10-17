@@ -65,6 +65,8 @@ public class TelaCadastro extends JFrame {
 	Integer Temporadas;
 	Integer Episodios;
 	
+	String tituloJanela = "Cadastro de Séries";
+	
 	Integer posicao;
 	
 
@@ -81,6 +83,7 @@ public class TelaCadastro extends JFrame {
 	public TelaCadastro(VisaoControlePrincipal VisaoCtrl, Serie s, int posicao) {
 		super();
 		this.VisaoControle = VisaoCtrl;
+		this.tituloJanela = "Ediar Série";
 		InicializarTela();
 		DefineDados(s);
 		this.posicao = posicao;
@@ -91,7 +94,7 @@ public class TelaCadastro extends JFrame {
 	 * Create the frame.
 	 */
 	public void InicializarTela() {
-		setTitle("Séries Binárias");
+		setTitle(tituloJanela);
 		this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 445, 360);
 		setMinimumSize(new Dimension(600, 360));
