@@ -23,7 +23,7 @@ public class TelaPrincipal extends JFrame {
 
 	private JPanel contentPane;
 	private VisaoControlePrincipal VisaoControle;
-	ImageIcon fundo = new ImageIcon(Toolkit.getDefaultToolkit().getImage("src\\series.png"));
+	ImageIcon fundo = new ImageIcon(TelaPrincipal.class.getResource("/image/series.png"));
 
 
 	/**
