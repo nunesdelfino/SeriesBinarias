@@ -7,6 +7,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+import java.io.IOException;
 import java.util.Date;
 
 import javax.swing.BoxLayout;
@@ -246,9 +247,14 @@ public class TelaCadastro extends JFrame {
 	
 	public void editar() {
 		
-		Controle.removeLinha(this.posicao);
-		valoresSalvar();
-		getVisaoControle().ExibirTelaLista();
+		try {
+			Controle.removeLinha(this.posicao);
+			valoresSalvar();
+			getVisaoControle().ExibirTelaLista();
+		} catch (IOException e) {
+			JOptionPane.showMessageDialog(null, "Não foi possivel editar linha", "Editar Linha", JOptionPane.INFORMATION_MESSAGE);
+		}
+		
 	}
 	
 	public void Salvar() {
@@ -266,6 +272,7 @@ public class TelaCadastro extends JFrame {
 			Integer Episodios;
 			Integer Temporadas;
 			Boolean Encerrada;
+			SaveRead incluirDados = new SaveRead();
 			
 			Episodios = Integer.parseUnsignedInt(this.InpNumEpisodios.getText());
 			Temporadas = Integer.parseUnsignedInt(this.InpNumTemporadas.getText());
@@ -279,7 +286,7 @@ public class TelaCadastro extends JFrame {
 			Serie s = new Serie(this.InpNome.getText(), this.InpDataLancamento.getDate(), Encerrada, Temporadas, Episodios);
 			
 			
-			SaveRead.Incluir(s);
+			incluirDados.Incluir(s);
 			
 			LimparTela();
 			

@@ -8,23 +8,36 @@ import modelo.IModelo;
 
 public class ControleSerie {
 	
-	private ManipulaArquivoSerializado Manipula;
+	private ManipulaArquivoSerializado manipula;
 	
+	/**
+	 * carrega os dados em meoria
+	 */
 	public ControleSerie() {
 		
 		try {
-			Manipula = new ManipulaArquivoSerializado("RegistroSeries", "Series.karen");
+			manipula = new ManipulaArquivoSerializado("RegistroSeries", "Series.karen");
 		} catch (ClassNotFoundException | IOException e) {
-			e.printStackTrace();
+			
 		}
 	}
 	
+	/**
+	 * Obtem as linhas do arquivo em uma lista IModelo
+	 * @return List<IModelo>
+	 */
 	public List<IModelo> getLista(){
-		return Manipula.getLinhas();
+		return manipula.getLinhas();
 	}
 	
-	public void removeLinha(int posicao) {
-		Manipula.RemoveLinha(posicao);
+	/**
+	 * Remove a linha passara por parametro
+	 * @param posicao
+	 * @return o mesmo retorno da função chamada
+	 * @throws IOException
+	 */
+	public boolean removeLinha(int posicao) throws IOException {
+		return manipula.removeLinha(posicao);
 	}
 	
 

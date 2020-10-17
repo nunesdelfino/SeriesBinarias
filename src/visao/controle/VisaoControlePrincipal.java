@@ -1,6 +1,7 @@
 package visao.controle;
 
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
 
@@ -56,26 +57,24 @@ public class VisaoControlePrincipal {
 	
 	public static void main(String[] args) {
 		
+		String mensagem = "Não foi possivel importar Modelo de interface";
+		String titulo = "Modelo de interface";
+		
 		try {
 			UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
-		} catch (ClassNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (InstantiationException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (IllegalAccessException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (UnsupportedLookAndFeelException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+		} catch (ClassNotFoundException | InstantiationException e) {
+			mensagemErro(mensagem, titulo);
+		}catch (IllegalAccessException | UnsupportedLookAndFeelException e) {
+			mensagemErro(mensagem, titulo);
 		}
-		
 		
 		VisaoControlePrincipal ctl = new VisaoControlePrincipal();
 		
 		ctl.ExibirTelaPrincipal();
+	}
+	
+	public static void mensagemErro(String mensagem, String titulo) {
+		JOptionPane.showMessageDialog(null, mensagem, titulo, JOptionPane.INFORMATION_MESSAGE);
 	}
 	
 

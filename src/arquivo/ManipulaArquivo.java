@@ -16,16 +16,22 @@ public abstract class ManipulaArquivo {
 	 
 	 private List<IModelo> ListaLinhas;
 	 
+	 /**
+	  * Prepara o local do arquivo, obtendo o caminho
+	  * @return true se funcionar
+	  * @return false se tiver problema
+	  */
 	 protected boolean preparaLocalDados() {
 		String strCaminhoDados = ManipulaArquivo.getCaminhoAplicacao() + SEPARADOR + this.getCaminhoArquivo();
 		
 		File caminhoDados = new File(strCaminhoDados);
 		try {
+			// Se o caminho não existir
 			if (!caminhoDados.exists()) {
+				// O caminho é criado
 				caminhoDados.mkdirs();
 			}
 		} catch (Exception e) {
-			e.printStackTrace();
 			return false;
 		}
 		return true;
@@ -39,6 +45,11 @@ public abstract class ManipulaArquivo {
 		return this.NomeArquivo;
 	}
 
+	/**
+	 * Prepara o arquivo para salvar os dados
+	 * @return true se der certo
+	 * @return false se der erro
+	 */
 	protected boolean preparaArquivoDados() {
 		String arquivoDados = this.getNomeArquivoAbsoluto();
 		File caminhoDados = new File(arquivoDados);
@@ -53,6 +64,10 @@ public abstract class ManipulaArquivo {
 		return true;
 	}
 	
+	/**
+	 * 
+	 * @return o caminho completo com o nome do arquivo
+	 */
 	public String getNomeArquivoAbsoluto() {
 		return ManipulaArquivo.getCaminhoAplicacao() + 
 				SEPARADOR + this.getCaminhoArquivo() + 
@@ -87,16 +102,15 @@ public abstract class ManipulaArquivo {
 	/**
 	 * retorna o caminho onde o programa está executando
 	 * 
-	 * @return
+	 * @return null se der errado
 	 */
 	public static String getCaminhoAplicacao() {
 		try {
 			return new java.io.File(".").getCanonicalPath();
-		} catch (IOException e) {// sem tratamento pois, dificilmente acontecerá um erro.
-			e.printStackTrace();
+		} catch (IOException e) {
+			// sem tratamento pois, dificilmente acontecerá um erro.
+			return null;
 		}
-		;
-		return null;
 	}
 	
 	public void incluirLinha(IModelo linha) {

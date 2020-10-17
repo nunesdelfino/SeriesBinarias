@@ -1,11 +1,5 @@
 package arquivo;
 
-import java.util.List;
-
-import controle.SaveRead;
-import modelo.IModelo;
-import modelo.Serie;
-
 import java.io.EOFException;
 import java.io.File;
 import java.io.FileInputStream;
@@ -16,6 +10,10 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutput;
 import java.io.ObjectOutputStream;
 import java.util.ArrayList;
+import java.util.List;
+
+import controle.SaveRead;
+import modelo.IModelo;
 
 public class ManipulaArquivoSerializado {
 	
@@ -85,7 +83,8 @@ public class ManipulaArquivoSerializado {
 	/**
 	 * cria a pasta onde os dados serão guardados.
 	 * 
-	 * @return
+	 * @return true se deu certo
+	 * @return  false se der errado
 	 */
 	private boolean preparaLocalDados() {
 		String strCaminhoDados = ManipulaArquivo.getCaminhoAplicacao() + SEPARADOR + this.getCaminhoArquivo();
@@ -93,10 +92,8 @@ public class ManipulaArquivoSerializado {
 		try {
 			if (!caminhoDados.exists()) {
 				return caminhoDados.mkdirs();
-				
 			}
 		} catch (Exception e) {
-			e.printStackTrace();
 			return false;
 		}
 		return true;
@@ -105,7 +102,8 @@ public class ManipulaArquivoSerializado {
 	/**
 	 * cria o arquivo onde os dados serão guardados se não existir.
 	 * 
-	 * @return
+	 * @return true se der certo
+	 * @return false se der errado
 	 */
 	private boolean preparaArquivoDados() {
 		String arquivoDados = this.getNomeArquivoAbsoluto();
@@ -115,7 +113,6 @@ public class ManipulaArquivoSerializado {
 				this.gravarArquivo();
 			}
 		} catch (Exception e) {
-			e.printStackTrace();
 			return false;
 		}
 		return true;
@@ -143,7 +140,7 @@ public class ManipulaArquivoSerializado {
 		this.limparLinhas();
 		
 		ObjectInputStream in = new ObjectInputStream(new FileInputStream(this.getNomeArquivoAbsoluto()));   
-        // Deserialize the object
+        // Deserialize o objeto
 		IModelo objeto = null;
 		try {
 			while ((objeto = (IModelo)in.readObject()) != null) {
@@ -175,17 +172,24 @@ public class ManipulaArquivoSerializado {
 
 	}
 	
-	public static void RemoveLinha(int Posicao) {
+	
+	public boolean removeLinha(int Posicao) throws IOException {
 		
-		ManipulaArquivoSerializado ListaSerie = SaveRead.Ler();
+		SaveRead lerArquivo = new SaveRead();
 		
-		ListaSerie.getLinhas().remove(Posicao);
-		try {
-			ListaSerie.gravarArquivo();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+		ManipulaArquivoSerializado listaSerie = lerArquivo.Ler();
+		
+		if(listaSerie == null) {
+			return false;
 		}
+		
+		listaSerie.getLinhas().remove(Posicao);
+		try {
+			listaSerie.gravarArquivo();
+		} catch (IOException e) {
+			return false;
+		}
+		return true;
 		
 	}
 
