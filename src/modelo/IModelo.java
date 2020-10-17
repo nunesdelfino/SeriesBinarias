@@ -2,9 +2,9 @@ package modelo;
 
 public interface IModelo {
 	
-	String getAtributoNome(int Coluna);
+	String getAtributoNome(int coluna);
 	
-	Object getAtributoValor(int Coluna);
+	Object getAtributoValor(int coluna);
 	
 	int getNumeroAtributos();
 

@@ -5,6 +5,7 @@ import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -17,20 +18,17 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
-import javax.swing.event.ListSelectionEvent;
-import javax.swing.event.ListSelectionListener;
-import javax.swing.table.AbstractTableModel;
 
-import arquivo.ManipulaArquivoSerializado;
 import controle.ControleSerie;
 import modelo.IModelo;
 import modelo.Serie;
 import visao.Jtable.ModeloJTableModel;
 import visao.controle.VisaoControlePrincipal;
 
+
 @SuppressWarnings("serial")
 public class TelaLista extends JFrame {
-
+	
 	private JPanel contentPane;
 	private VisaoControlePrincipal VisaoControle;
 	private JTable table;
@@ -133,7 +131,11 @@ public class TelaLista extends JFrame {
 
 	private void ExcluirLinha() {
 		
-		Controle.removeLinha(table.getSelectedRow());
+		try {
+			Controle.removeLinha(table.getSelectedRow());
+		} catch (IOException e) {
+			JOptionPane.showMessageDialog(null, "Não foi possivel remover linha", "Remover Linha", JOptionPane.INFORMATION_MESSAGE);
+		}
 		PreencherTabela();
 		
 	}

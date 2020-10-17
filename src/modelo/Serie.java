@@ -7,9 +7,6 @@ import utils.DateUtils;
 
 public class Serie implements Serializable, IModelo {
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 4969722851056697744L;
 	
 	private String Nome;
@@ -114,6 +111,10 @@ public class Serie implements Serializable, IModelo {
 		
 	}
 	
+	/**
+	 * Retorna uma string com a data formatada
+	 * @return
+	 */
 	public String DataFormatada() {
 		return DateUtils.getDia(this.getLancamento()) + "/" + 
 				DateUtils.getMes(this.getLancamento()) + "/" +
