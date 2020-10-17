@@ -22,5 +22,10 @@ public class ControleSerie {
 	public List<IModelo> getLista(){
 		return Manipula.getLinhas();
 	}
+	
+	public void removeLinha(int posicao) {
+		Manipula.RemoveLinha(posicao);
+	}
+	
 
 }

@@ -74,5 +74,9 @@ public class ModeloJTableModel extends AbstractTableModel {
 	public void setNomeColunas(ArrayList<String> nomeColunas) {
 		NomeColunas = nomeColunas;
 	}
+	
+	public IModelo getModeloLinha(int linha) {
+		return this.getTabelaLista().get(linha);
+	}
 
 }

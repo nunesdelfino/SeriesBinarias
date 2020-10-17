@@ -8,19 +8,19 @@ public class DateUtils {
 	public static int getDia(Date date) {
 		Calendar Calendario = Calendar.getInstance();
 		Calendario.setTime(date);
-		return Calendario.get(Calendario.DAY_OF_MONTH);
+		return Calendario.get(Calendar.DAY_OF_MONTH);
 	}
 	
 	public static int getMes(Date date) {
 		Calendar Calendario = Calendar.getInstance();
 		Calendario.setTime(date);
-		return Calendario.get(Calendario.MONTH);
+		return Calendario.get(Calendar.MONTH) + 1;
 	}
 	
 	public static int getAno(Date date) {
 		Calendar Calendario = Calendar.getInstance();
 		Calendario.setTime(date);
-		return Calendario.get(Calendario.YEAR);
+		return Calendario.get(Calendar.YEAR);
 	}
 
 }
