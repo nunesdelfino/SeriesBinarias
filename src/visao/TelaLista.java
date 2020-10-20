@@ -74,9 +74,7 @@ public class TelaLista extends JFrame {
 		btnNewButton = new JButton("Editar");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if(table.getSelectedRow() != -1) {
-					Editar();
-				}
+				Editar();
 			}
 		});
 		btnNewButton.setFont(new Font("Tahoma", Font.PLAIN, 11));
@@ -106,24 +104,29 @@ public class TelaLista extends JFrame {
 	}
 	
 	private void Editar() {
-		
-		
-		int linha = table.getSelectedRow();
-		ModeloJTableModel modeloJTableModel = (ModeloJTableModel)table.getModel();
-		IModelo modelo = modeloJTableModel.getModeloLinha(linha);
-		
-		Serie s = (Serie) modelo;
-		getVisaoControle().ExibirTelaCadastro(s, table.getSelectedRow());
-		
+		if(table.getSelectedRow() != -1) {
+			int linha = table.getSelectedRow();
+			ModeloJTableModel modeloJTableModel = (ModeloJTableModel)table.getModel();
+			IModelo modelo = modeloJTableModel.getModeloLinha(linha);
+			
+			Serie s = (Serie) modelo;
+			getVisaoControle().ExibirTelaCadastro(s, table.getSelectedRow());
+		} else {
+			JOptionPane.showMessageDialog(null, "Você precisa selecionar uma linha para ser editada", "Editar Linha", JOptionPane.INFORMATION_MESSAGE);
+		}
 	}
 
 	private void ExcluirLinha() {
-		try {
-			Controle.removeLinha(table.getSelectedRow());
-			PreencherTabela();
-			JOptionPane.showMessageDialog(null, "Exclusão realizada com sucesso", "Excluir", JOptionPane.INFORMATION_MESSAGE);
-		} catch (IOException e) {
-			JOptionPane.showMessageDialog(null, "Não foi possivel remover linha", "Remover Linha", JOptionPane.INFORMATION_MESSAGE);
+		if(table.getSelectedRow() != -1) {
+			try {
+				Controle.removeLinha(table.getSelectedRow());
+				PreencherTabela();
+				JOptionPane.showMessageDialog(null, "Exclusão realizada com sucesso", "Excluir", JOptionPane.INFORMATION_MESSAGE);
+			} catch (IOException e) {
+				JOptionPane.showMessageDialog(null, "Não foi possivel remover linha", "Remover Linha", JOptionPane.INFORMATION_MESSAGE);
+			}
+		} else {
+			JOptionPane.showMessageDialog(null, "Você precisa selecionar uma linha para ser removida", "Remover Linha", JOptionPane.INFORMATION_MESSAGE);
 		}
 	}
 	
