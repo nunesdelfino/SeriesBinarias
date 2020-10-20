@@ -263,12 +263,16 @@ public class TelaCadastro extends JFrame {
 	
 	public void Salvar() {
 		
-		valoresSalvar();
-		JOptionPane.showMessageDialog(null, "Série salva com sucesso", "Salvar", JOptionPane.INFORMATION_MESSAGE);
+		Boolean valida = null;
+		
+		valida = valoresSalvar();
+		if(valida == true) {
+			JOptionPane.showMessageDialog(null, "Série salva com sucesso", "Salvar", JOptionPane.INFORMATION_MESSAGE);
+		}
 		
 	}
 
-	public void valoresSalvar() {
+	public boolean valoresSalvar() {
 		if(!this.InpNome.getText().equals("") &&
 				this.InpDataLancamento.getDate() != null &&
 				!this.InpNumEpisodios.getText().equals("") &&
@@ -295,9 +299,12 @@ public class TelaCadastro extends JFrame {
 			
 			LimparTela();
 			
+			return true;
+			
 		} else {
 			String Mensagem = "Todos os campos devem estar preenchidos!";
 			JOptionPane.showMessageDialog(null, Mensagem, null, JOptionPane.INFORMATION_MESSAGE);
+			return false;
 		}
 	}
 	
